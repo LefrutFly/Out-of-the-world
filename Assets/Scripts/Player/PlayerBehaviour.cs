@@ -4,6 +4,8 @@ using PlayerSpace;
 
 public class PlayerBehaviour : Being
 {
+    public static PlayerBehaviour player { get; private set; }
+
     [HideInInspector] public Rigidbody2D Rigidbody;
 
     [Space]
@@ -19,18 +21,14 @@ public class PlayerBehaviour : Being
 
     protected override void AwakeBehaviour()
     {
+        player = this;
         Rigidbody = GetComponent<Rigidbody2D>();
-        PlayerDoer player = new PlayerDoer();
-        player.InitPlayer();
+        PlayerDoer playerDoer = new PlayerDoer();
+        playerDoer.InitPlayer();
     }
     protected override void FixedUpdateBehaviour()
     {
         ControlPC();
-    }
-
-    public bool isGround()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
 
     private void ControlPC()
@@ -47,6 +45,11 @@ public class PlayerBehaviour : Being
         {
             Jump();
         }
+    }
+
+    public bool isGround()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
 
     public void MoveLeft()

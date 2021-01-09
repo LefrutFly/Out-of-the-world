@@ -4,8 +4,8 @@ using System;
 [System.Serializable]
 public class DataHP
 {
-    [SerializeField] public int hp;
-    [SerializeField] public int hpMax;
+    [SerializeField] private int hp;
+    [SerializeField] private int hpMax;
 
     public Death death = new Death();
     public Action OnUIUpdate;
@@ -19,9 +19,44 @@ public class DataHP
         };
     }
 
-    public void SetHP(int changeHP)
+    public int GetHP()
     {
-        float hpPluse = hp + changeHP;
+        return hp;
+    }
+    public int GetHPMax()
+    {
+        return hpMax;
+    }
+
+    public void SetHPNow(int changeHPMax)
+    {
+        hp = changeHPMax;
+        if (hp <= 0)
+        {
+            OnUIUpdate?.Invoke();
+            death.InitDeath();
+        }
+        else if (hp > hpMax)
+        {
+            hp = hpMax;
+        }
+        OnUIUpdate?.Invoke();
+    }
+    public void SetHPMax(int changeHPMax)
+    {
+        hpMax = changeHPMax;
+        if (hpMax <= 0)
+        {
+            OnUIUpdate?.Invoke();
+            death.InitDeath();
+        }
+        OnUIUpdate?.Invoke();
+    }
+
+
+    public void ChangeHPNow(int changeHP)
+    {
+        int hpPluse = hp + changeHP;
         if (hpPluse <= 0)
         {
             OnUIUpdate?.Invoke();
@@ -37,18 +72,15 @@ public class DataHP
         }
         OnUIUpdate?.Invoke();
     }
-
-
-    public void SetHPMax(int changeHPMax)
+    public void ChangeHPMax(int changeHPMax)
     {
         hpMax += changeHPMax;
         OnUIUpdate?.Invoke();
     }
 
-
     public void TakeDamage(int damage)
     {
-        SetHP(-damage);
+        ChangeHPNow(-damage);
     }
 }
 
