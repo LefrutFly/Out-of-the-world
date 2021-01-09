@@ -5,19 +5,16 @@ using PlayerSpace;
 public class PlayerBehaviour : Being
 {
     public static PlayerBehaviour player { get; private set; }
-
     [HideInInspector] public Rigidbody2D Rigidbody;
 
     [Space]
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundRadius;
-    [SerializeField] private LayerMask whatIsGround;
-
+    [SerializeField] public Transform groundCheck;
+    [SerializeField] public float groundRadius;
+    [SerializeField] public LayerMask whatIsGround;
 
     public static Action<PlayerBehaviour> OnMoveLeft;
     public static Action<PlayerBehaviour> OnMoveRight;
     public static Action<PlayerBehaviour> OnJump;
-
 
     protected override void AwakeBehaviour()
     {
@@ -45,11 +42,6 @@ public class PlayerBehaviour : Being
         {
             Jump();
         }
-    }
-
-    public bool isGround()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
     }
 
     public void MoveLeft()

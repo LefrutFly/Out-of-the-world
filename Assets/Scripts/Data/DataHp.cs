@@ -28,9 +28,9 @@ public class DataHP
         return hpMax;
     }
 
-    public void SetHPNow(int changeHPMax)
+    public void SetHPNow(int changeHPNow)
     {
-        hp = changeHPMax;
+        hp = changeHPNow;
         if (hp <= 0)
         {
             OnUIUpdate?.Invoke();

@@ -7,10 +7,10 @@ namespace EnemyBehaviour
     {
         private EnemyBaseBehaviour gm;
 
-        private float radius = 1.2f;
+        private float radius = 0.8f;
         public LayerMask playerLayer;
 
-        private float shiftXPos = 2.2f;
+        private float shiftXPos = 1f;
         private Vector2 leftPointCheck = new Vector2(0, 0);
         private Vector2 rightPointCheck = new Vector2(0, 0);
 
@@ -76,10 +76,6 @@ namespace EnemyBehaviour
     [CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Behaviour/Attack")]
     public class BehaviorAttackSO : BehaviourSO
     {
-        [SerializeField] private float shiftXPos;
-        [SerializeField] private float radius;
-        [SerializeField] private LayerMask playerLayer;
-
         public BehaviorAttackSO()
         {
             behaviour = new BehaviorAttack();

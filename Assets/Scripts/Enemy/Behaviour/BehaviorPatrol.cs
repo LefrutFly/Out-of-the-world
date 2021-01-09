@@ -68,10 +68,6 @@ namespace EnemyBehaviour
     [CreateAssetMenu(fileName = "Patrol", menuName = "Enemy/Behaviour/Patrol")]
     public class BehaviorPatrolSO : BehaviourSO
     {
-        [SerializeField] private float shiftXPos;
-        [SerializeField] private float radius;
-        [SerializeField] private LayerMask groundLayer;
-
         public BehaviorPatrolSO()
         {
             behaviour = new BehaviorPatrol();

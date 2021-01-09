@@ -8,8 +8,8 @@ public class EnemyBaseBehaviour : Being
     [HideInInspector] public Vector2 startPoint;
     [HideInInspector] public PlayerBehaviour player;
 
-    [SerializeReference] protected List<BehaviourSO> behaviours = new List<BehaviourSO>();
-    [SerializeReference] protected List<BehaviourSO> behavioursAfterDeath = new List<BehaviourSO>();
+    [SerializeReference] public List<BehaviourSO> behaviours = new List<BehaviourSO>();
+    [SerializeReference] public List<BehaviourSO> behavioursAfterDeath = new List<BehaviourSO>();
 
     protected override void AwakeBehaviour()
     {
