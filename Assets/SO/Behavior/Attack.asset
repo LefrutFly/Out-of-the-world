@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 4e5ed5fe7926ed640919bbd4ba35e52f, type: 3}
   m_Name: Attack
-  m_EditorClassIdentifier: Assembly-CSharp:EnemyBehaviour:BehaviorAttackSO
-  shiftXPos: 2.2
-  radius: 1.2
+  m_EditorClassIdentifier: 
+  radius: 0.8
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
+  shiftXPos: 1

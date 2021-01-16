@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace EnemyBehaviour
-{
-    public class BehaviourDestroy : IBehaviour
+//namespace EnemyBehaviour
+//{
+public class BehaviourDestroy : IBehaviour
     {
         public override void Init(EnemyBaseBehaviour gm)
         {
@@ -10,15 +10,4 @@ namespace EnemyBehaviour
         }
     }
 
-
-    [CreateAssetMenu(fileName = "Destroy", menuName = "Enemy/Behaviour/Destroy")]
-    public class BehaviourDestroySO : BehaviourSO
-    {
-        public override void Init(EnemyBaseBehaviour gm)
-        {
-            behaviour = new BehaviourDestroy();
-            base.Init(gm);
-        }
-    }
-
-}
+//}

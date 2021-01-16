@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿//using EnemyBehaviour;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBaseBehaviour : Being
@@ -28,7 +29,7 @@ public class EnemyBaseBehaviour : Being
     protected override void InitDeath()
     {
         player = PlayerBehaviour.player;
-
+        Debug.Log("Dead");
         foreach (var doThis in behavioursAfterDeath)
         {
             doThis?.Init(this);

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using EnemyBehaviour;
+//using EnemyBehaviour;
 
 public class BehaviourSO : ScriptableObject
 {
