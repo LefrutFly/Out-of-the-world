@@ -7,6 +7,7 @@ public class EnemyBaseBehaviour : Being
     [SerializeField] public EnemySO enemySO;
 
     [HideInInspector] public Vector2 startPoint;
+    [SerializeField] public bool rotateIsRight = true;
     [HideInInspector] public PlayerBehaviour player;
 
     [SerializeReference] public List<BehaviourSO> behaviours = new List<BehaviourSO>();

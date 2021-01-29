@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c69f0dc9ada8074ab99a840c3f42b4b, type: 3}
   m_Name: Patrol
   m_EditorClassIdentifier: 
-  shiftXPos: 1.2
+  shiftXPos: 2
   radius: 0.1

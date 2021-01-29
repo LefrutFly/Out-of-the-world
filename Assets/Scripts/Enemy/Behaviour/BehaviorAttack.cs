@@ -49,7 +49,7 @@ class BehaviorAttack : IBehaviour
 
     private void CheckPoints()
     {
-        if (gm.transform.rotation.y == 180)
+        if (gm.rotateIsRight)
         {
             isPlayer = isCollision(rightPointCheck);
         }

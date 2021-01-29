@@ -3,7 +3,7 @@
 [CreateAssetMenu(fileName = "Patrol", menuName = "Enemy/Behaviour/Patrol")]
 public class BehaviorPatrolSO : BehaviourSO
 {
-    BehaviorPatrol patrol = new BehaviorPatrol();
+    private BehaviorPatrol patrol = new BehaviorPatrol();
 
     public float shiftXPos;// = 1.2f;
     public float radius;// = 0.1f;

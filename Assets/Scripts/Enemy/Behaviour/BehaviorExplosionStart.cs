@@ -35,6 +35,8 @@ public class BehaviorExplosionStart : IBehaviour
         isExplosion = true;
         yield return new WaitForSeconds(timeToBoom);
         Explosion explosion = new Explosion();
+        explosion.playerLayer = playerLayer;
+        explosion.radius = radius;
         explosion.Boom(gm);
         BehaviourDestroy destroy = new BehaviourDestroy();
         destroy.Init(gm);

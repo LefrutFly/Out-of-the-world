@@ -3,7 +3,7 @@
 [CreateAssetMenu(fileName = "ExplosionStart", menuName = "Enemy/Behaviour/ExplosionStart")]
 public class BehaviorExplosionStartSO : BehaviourSO
 {
-    BehaviorExplosionStart explosionStart = new BehaviorExplosionStart();
+    private BehaviorExplosionStart explosionStart = new BehaviorExplosionStart();
 
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float radius;

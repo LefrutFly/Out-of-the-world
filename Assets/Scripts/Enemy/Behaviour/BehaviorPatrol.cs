@@ -37,12 +37,14 @@ class BehaviorPatrol : IBehaviour
         {
             direction.x = 1;
             gm.view.transform.rotation = Quaternion.Euler(0, 0, 0);
+            gm.rotateIsRight = true;
             gm.gameObject.MovePosition(speed, direction);
         }
         else if (isGround(rightPointCheck))
         {
             direction.x = -1;
             gm.view.transform.rotation = Quaternion.Euler(0, 180, 0);
+            gm.rotateIsRight = false;
             gm.gameObject.MovePosition(speed, direction);
         }
         else

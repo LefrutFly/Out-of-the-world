@@ -3,7 +3,7 @@
 [CreateAssetMenu(fileName = "Attack", menuName = "Enemy/Behaviour/Attack")]
 public class BehaviorAttackSO : BehaviourSO
 {
-    BehaviorAttack attack = new BehaviorAttack();
+    private BehaviorAttack attack = new BehaviorAttack();
 
     [SerializeField] private float radius;// = 0.8f;
     [SerializeField] private LayerMask playerLayer;
