@@ -5,6 +5,7 @@ using UnityEngine;
 public class Button : Interacts<PlayerBehaviour>
 {
     [SerializeReference] private List<IUse> usable = new List<IUse>();
+    [SerializeField] private LineRenderer[] lines;
     [SerializeField, Tooltip("Задержка перед каждой активацией")] private float timeDelay;
 
     [Space]
@@ -14,6 +15,11 @@ public class Button : Interacts<PlayerBehaviour>
     [Space]
     [Header("System")]
     [SerializeField] private bool isActive = false;
+
+    private void Start()
+    {
+        DrawLine();
+    }
 
     protected override void DoThisAction()
     {
@@ -37,5 +43,25 @@ public class Button : Interacts<PlayerBehaviour>
     private void AnimationStart()
     {
         animator.enabled = true;
+    }
+
+    private void DrawLine()
+    {
+        Vector2 positionButton = transform.position;
+
+        int index = 0;
+        if (lines.Length >= usable.Count)
+        {
+            foreach (var obj in usable)
+            {
+                lines[index].SetPosition(0, positionButton);
+                lines[index].SetPosition(1, obj.transform.position);
+                index++;
+            }
+        }
+        else
+        {
+            Debug.LogError("Not enough lines, stoped in : " + index);
+        }
     }
 }

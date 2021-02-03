@@ -12,6 +12,9 @@ public class PlayerBehaviour : Being
     [SerializeField] public float groundRadius;
     [SerializeField] public LayerMask whatIsGround;
 
+    [Space]
+    [SerializeField] public DataInventory inventory;
+
     public static Action<PlayerBehaviour> OnMoveLeft;
     public static Action<PlayerBehaviour> OnMoveRight;
     public static Action<PlayerBehaviour> OnJump;

@@ -1,22 +1,14 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
 public class RotatableOnAngleObject : IUse
 {
     [SerializeField] public float angelTo;
-    [SerializeField] private float speed;
+    [SerializeField] private float duration;
 
     public override void StartAction()
     {
-        StartCoroutine(Rotate());
-    }
-
-    private IEnumerator Rotate()
-    {
-        while (!(Mathf.Approximately(transform.localEulerAngles.z, angelTo)))
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, angelTo), speed * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-        }
+        transform.DORotate(new Vector3(0, 0, angelTo), duration);
     }
 }
