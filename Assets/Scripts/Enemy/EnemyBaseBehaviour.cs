@@ -10,8 +10,8 @@ public class EnemyBaseBehaviour : Being
     [SerializeField] public bool rotateIsRight = true;
     [HideInInspector] public PlayerBehaviour player;
 
-    [SerializeReference] public List<BehaviourSO> behaviours = new List<BehaviourSO>();
-    [SerializeReference] public List<BehaviourSO> behavioursAfterDeath = new List<BehaviourSO>();
+    [HideInInspector] public List<IBehaviour> behaviours = new List<IBehaviour>();
+    [HideInInspector] public List<IBehaviour> behavioursAfterDeath = new List<IBehaviour>();
 
     protected override void AwakeBehaviour()
     {

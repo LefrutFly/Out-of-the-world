@@ -1,16 +1,20 @@
+using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Button : Interacts<PlayerBehaviour>
 {
-    [SerializeReference] private List<IUse> usable = new List<IUse>();
-    [SerializeField] private LineRenderer[] lines;
+    [SerializeReference] private IUse[] usable;
     [SerializeField, Tooltip("Задержка перед каждой активацией")] private float timeDelay;
+    
+    [Space]
+    [SerializeField] private LineRenderer[] lines;
+    [HideInInspector] public DrawLines drawLines = new DrawLines();
 
     [Space]
-    [Header("Animation")]
-    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject plate;
+    [SerializeField] private float plateHeightBot;
+    [SerializeField] private float duration;
 
     [Space]
     [Header("System")]
@@ -42,26 +46,13 @@ public class Button : Interacts<PlayerBehaviour>
 
     private void AnimationStart()
     {
-        animator.enabled = true;
+        plateHeightBot += transform.position.y;
+        plate.transform.DOMoveY(plateHeightBot, duration, false);
+        plate.GetComponent<SpriteRenderer>().DOColor(new Color32(35, 35, 35, 255), duration);
     }
 
     private void DrawLine()
     {
-        Vector2 positionButton = transform.position;
-
-        int index = 0;
-        if (lines.Length >= usable.Count)
-        {
-            foreach (var obj in usable)
-            {
-                lines[index].SetPosition(0, positionButton);
-                lines[index].SetPosition(1, obj.transform.position);
-                index++;
-            }
-        }
-        else
-        {
-            Debug.LogError("Not enough lines, stoped in : " + index);
-        }
+        DrawLines.OnDraw?.Invoke(gameObject, lines, usable);
     }
 }

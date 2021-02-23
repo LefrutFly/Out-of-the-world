@@ -33,8 +33,8 @@ public class Spike : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
             being.hp.TakeDamage(damage);
+            yield return new WaitForSeconds(1);
         }
     }
 }

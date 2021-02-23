@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIinGame : MonoBehaviour
 {
-    [SerializeField] private Image hpImage;
-    [SerializeField] private Text textHp;
-
+    [SerializeField] private GameObject hpImage;
+    [SerializeField] private GameObject textHp;
 
     private void Start()
     {
@@ -22,7 +20,12 @@ public class UIinGame : MonoBehaviour
     {
         float hp = PlayerBehaviour.player.hp.GetHP();
         float hpMax = PlayerBehaviour.player.hp.GetHPMax();
-        hpImage.fillAmount = hp / hpMax;
-        textHp.text = hp + "/" + hpMax;
+        hpImage.GetComponent<Image>().fillAmount = hp / hpMax;
+        textHp.GetComponent<Text>().text = hp + "/" + hpMax;
+    }
+
+    public void LoadScene(string nameScene)
+    {
+        SceneManager.LoadScene(nameScene);
     }
 }

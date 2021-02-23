@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class ButtonSwitch : Interacts<PlayerBehaviour>
 {
-    [SerializeReference] private List<IUseSwith> usable = new List<IUseSwith>();
-    [SerializeField] private LineRenderer[] lines;
+    [SerializeReference] private IUseSwith[] usable;
     [SerializeField, Tooltip("Задержка перед каждой активацией")] private float timeDelay;
+
+    [Space]
+    [SerializeField] private LineRenderer[] lines;
+    [HideInInspector] public DrawLines drawLines = new DrawLines();
+
 
     [Space]
     [Header("Animation")]
@@ -70,21 +74,6 @@ public class ButtonSwitch : Interacts<PlayerBehaviour>
 
     private void DrawLine()
     {
-        Vector2 positionButton = transform.position;
-
-        int index = 0;
-        if (lines.Length >= usable.Count)
-        {
-            foreach (var obj in usable)
-            {
-                lines[index].SetPosition(0, positionButton);
-                lines[index].SetPosition(1, obj.transform.position);
-                index++;
-            }
-        }
-        else
-        {
-            Debug.LogError("Not enough lines, stoped in : " + index);
-        }
+        DrawLines.OnDraw?.Invoke(gameObject, lines, usable);
     }
 }

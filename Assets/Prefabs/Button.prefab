@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 971425393422658405}
   - component: {fileID: 971425393422658330}
   m_Layer: 0
-  m_Name: Block
+  m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +243,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: fe52858cb25fb634b82ebc6a7e06b89f, type: 3}
-  m_Color: {r: 0.12917924, g: 0.5660378, b: 0, a: 1}
+  m_Color: {r: 0.14574803, g: 0.33962262, b: 0.08810965, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -916,7 +916,9 @@ MonoBehaviour:
   - {fileID: 971425393936273979}
   - {fileID: 971425394281499196}
   timeDelay: 0
-  animator: {fileID: 971425393422658330}
+  plate: {fileID: 971425393422658331}
+  plateHeightBot: 0
+  duration: 0
   isActive: 0
 --- !u!61 &971425394412608897
 BoxCollider2D:
@@ -1037,7 +1039,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fe52858cb25fb634b82ebc6a7e06b89f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

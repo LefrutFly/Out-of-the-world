@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using PlayerSpace;
 
 public class PlayerBehaviour : Being
 {
     public static PlayerBehaviour player { get; private set; }
     [HideInInspector] public Rigidbody2D Rigidbody;
+
+    [SerializeField] private GameObject SETUP;
+
+    [Space]
+    [SerializeField] public Animator animator;
 
     [Space]
     [SerializeField] public Transform groundCheck;
@@ -19,6 +26,8 @@ public class PlayerBehaviour : Being
     public static Action<PlayerBehaviour> OnMoveRight;
     public static Action<PlayerBehaviour> OnJump;
 
+    private Action OnMove;
+
     protected override void AwakeBehaviour()
     {
         player = this;
@@ -28,8 +37,30 @@ public class PlayerBehaviour : Being
     }
     protected override void FixedUpdateBehaviour()
     {
+        OnMove?.Invoke();
         ControlPC();
     }
+
+    protected override void InitDeath()
+    {
+        StartCoroutine(Death());
+    }
+
+    private IEnumerator Death()
+    {
+        Debug.Log("PLAYER IS DEAD!");
+        animator.enabled = false;
+        OnJump = (player) => { };
+        OnMoveLeft = (player) => { };
+        OnMoveRight = (player) => { };
+
+        yield return new WaitForSeconds(1);
+
+        int level = SETUP.GetComponent<Level>().LevelInxdex;
+        SceneManager.LoadScene("Level_" + level);
+    }
+
+
 
     private void ControlPC()
     {
@@ -46,25 +77,55 @@ public class PlayerBehaviour : Being
             Jump();
         }
     }
-
-    public void MoveLeft()
+    private void MoveLeft()
     {
         OnMoveLeft?.Invoke(this);
     }
-    public void MoveRight()
+    private void MoveRight()
     {
         OnMoveRight?.Invoke(this);
     }
-    public void Jump()
+    private void Jump()
     {
         OnJump?.Invoke(this);
     }
 
-    protected override void InitDeath()
+
+    public void DownMoveLeft()
     {
-        Debug.LogError("PLAYER IS DEAD!");
-        OnJump = (player) => { };
-        OnMoveLeft = (player) => { };
-        OnMoveRight = (player) => { };
+        animator.SetInteger("stay", 1);
+        OnMove = () =>
+        {
+            MoveLeft();
+        };
+    }
+    public void DownMoveRight()
+    {
+        animator.SetInteger("stay", 1);
+        OnMove = () =>
+        {
+            MoveRight();
+        };
+    }
+    public void DownJump()
+    {
+        animator.SetInteger("stay", 2);
+        Jump();
+    }
+
+
+    public void UpMoveLeft()
+    {
+        OnMove = () => { };
+        animator.SetInteger("stay", 0);
+    }
+    public void UpMoveRight()
+    {
+        OnMove = () => { };
+        animator.SetInteger("stay", 0);
+    }
+    public void UpJump()
+    {
+        animator.SetInteger("stay", 0);
     }
 }

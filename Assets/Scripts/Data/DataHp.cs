@@ -15,7 +15,6 @@ public class DataHP
         Awaker.OnAwake += () =>
         {
             hp = hpMax;
-            OnUIUpdate?.Invoke();
         };
     }
 
@@ -33,6 +32,7 @@ public class DataHP
         hp = changeHPNow;
         if (hp <= 0)
         {
+            hp = 0;
             OnUIUpdate?.Invoke();
             death.InitDeath();
         }
@@ -47,6 +47,7 @@ public class DataHP
         hpMax = changeHPMax;
         if (hpMax <= 0)
         {
+            hp = 0;
             OnUIUpdate?.Invoke();
             death.InitDeath();
         }
@@ -59,6 +60,7 @@ public class DataHP
         int hpPluse = hp + changeHP;
         if (hpPluse <= 0)
         {
+            hp = 0;
             OnUIUpdate?.Invoke();
             death.InitDeath();
         }

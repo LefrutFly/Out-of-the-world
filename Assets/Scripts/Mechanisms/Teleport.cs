@@ -12,6 +12,7 @@ public class Teleport : IUseSwith
     [SerializeField] public SpriteRenderer activityLamp;
 
     [SerializeField] private LineRenderer lines;
+    [HideInInspector] public DrawLines drawLines = new DrawLines();
 
     private void Start()
     {
@@ -48,9 +49,11 @@ public class Teleport : IUseSwith
         positionTelepor = transform.position;
         positionTelepor.y -= 1.6f;
     }
+
     private void DrawLine()
     {
-        lines.SetPosition(0, transform.position);
-        lines.SetPosition(1, teleportTo.transform.position);
+        LineRenderer[] lineRenderers = { lines };
+        Teleport[] teleports = { teleportTo };
+        DrawLines.OnDraw?.Invoke(gameObject, lineRenderers, teleports);
     }
 }

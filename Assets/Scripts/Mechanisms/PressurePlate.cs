@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class PressurePlate : Interacts<Rigidbody2D>
 {
-    [SerializeReference] private List<IUse> usable = new List<IUse>();
-    [SerializeField] private LineRenderer[] lines;
+    [SerializeReference] private IUse[] usable;
     [SerializeField, Tooltip("Задержка перед каждой активацией")] private float timeDelay;
+
+    [Space]
+    [SerializeField] private LineRenderer[] lines;
+    [HideInInspector] public DrawLines drawLines = new DrawLines();
 
     [Space]
     [SerializeField] private GameObject plate;
@@ -44,26 +47,13 @@ public class PressurePlate : Interacts<Rigidbody2D>
 
     private void AnimationStart()
     {
+        plateHeightBot += transform.position.y;
         plate.transform.DOMoveY(plateHeightBot, duration, false);
+        plate.GetComponent<SpriteRenderer>().DOColor(new Color32(35, 35, 35, 255), duration);
     }
 
     private void DrawLine()
     {
-        Vector2 positionButton = transform.position;
-
-        int index = 0;
-        if (lines.Length >= usable.Count)
-        {
-            foreach (var obj in usable)
-            {
-                lines[index].SetPosition(0, positionButton);
-                lines[index].SetPosition(1, obj.transform.position);
-                index++;
-            }
-        }
-        else
-        {
-            Debug.LogError("Not enough lines, stoped in : " + index);
-        }
+        DrawLines.OnDraw?.Invoke(gameObject, lines, usable);
     }
 }

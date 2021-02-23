@@ -8,14 +8,21 @@ public class Door : IUseSwith
     [SerializeField] private float openDoorHeight;
     [SerializeField] private float closeDoorHeight;
     [SerializeField] private float duration;
-    
+
+    private float yPosStart;
+
+    private void Start()
+    {
+        yPosStart = transform.position.y;
+    }
+
     public override void ActionOn()
     {
-        door.transform.DOMoveY(openDoorHeight, duration, false);
+        door.transform.DOMoveY(yPosStart + openDoorHeight, duration, false);
     }
     
     public override void ActionOff()
     {
-        door.transform.DOMoveY(closeDoorHeight, duration, false);
+        door.transform.DOMoveY(yPosStart + closeDoorHeight, duration, false);
     }
 }
