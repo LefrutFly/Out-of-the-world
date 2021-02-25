@@ -3,12 +3,15 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] private GeneralSetup generalSetup;
     [Space]
     [SerializeField] private Text textClock;
+    [Space]
+    [SerializeField] private Text textMessageForPlayer;
     [Space]
     [SerializeField] private Transform leftPoint;
     [SerializeField] private Transform rightPoint;
@@ -24,25 +27,48 @@ public class StartMenu : MonoBehaviour
     [Space]
     [SerializeField] private int pageNow = 0;
 
-
+    [Space]
+    [SerializeField] private bool reset = false;
     private void Awake()
     {
+#if UNITY_EDITOR
+        if (reset)
+        {
+            Saving.ResetSaves();
+        }
+#endif
+        Saving.Load(generalSetup);
         toggleEnableLevelHints.isOn = generalSetup.drawLines;
+        textMessageForPlayer.text = "";
     }
 
     private void Update()
     {
+        UpdateClock();
+    }
+
+    private void UpdateClock()
+    {
         DateTime time = DateTime.Now;
         string hour;
-        if (time.Hour == 0)
+        string minute;
+        if (time.Hour < 10)
         {
-            hour = "00";
+            hour = "0" + time.Hour;
         }
         else
         {
             hour = "" + time.Hour;
         }
-        textClock.text = hour + " : " + time.Minute;
+        if (time.Minute < 10)
+        {
+            minute = "0" + time.Minute;
+        }
+        else
+        {
+            minute = "" + time.Minute;
+        }
+        textClock.text = hour + " : " + minute;
     }
 
     public void TurnPage(int to)
@@ -61,12 +87,22 @@ public class StartMenu : MonoBehaviour
 
     public void Continue()
     {
-
+        SceneManager.LoadScene("Level_" + generalSetup.LastOpenLevel);
     }
 
     public void StartLevel(int level)
     {
-        SceneManager.LoadScene("Level_" + level);
+        if (generalSetup.LastUnlockedLevel >= level)
+        {
+            SceneManager.LoadScene("Level_" + level);
+        }
+        else
+        {
+            if (!isClickOnShowMessage)
+            {
+                StartCoroutine(ShowMessage("Level not unlocked"));
+            }
+        }
     }
 
     public void EnableLevelHints(bool value)
@@ -75,9 +111,27 @@ public class StartMenu : MonoBehaviour
         {
             generalSetup.drawLines = true;
         }
-        else 
+        else
         {
             generalSetup.drawLines = false;
         }
+
+        Saving.Save(generalSetup);
+    }
+
+    bool isClickOnShowMessage = false;
+    public IEnumerator ShowMessage(string message)
+    {
+        isClickOnShowMessage = true;
+        textMessageForPlayer.text = message;
+
+        yield return new WaitForSeconds(0.5f);
+
+        textMessageForPlayer.DOFade(0, 1.5f).OnComplete(() =>
+        {
+            textMessageForPlayer.text = "";
+            textMessageForPlayer.DOFade(255, 0);
+            isClickOnShowMessage = false;
+        });
     }
 }

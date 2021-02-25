@@ -1088,6 +1088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: []
+  timeDelay: 0
   lines:
   - {fileID: 6265809304139344056}
   - {fileID: 6265809303840522994}
@@ -1095,7 +1096,6 @@ MonoBehaviour:
   - {fileID: 6265809303796486333}
   - {fileID: 6265809303853747607}
   - {fileID: 6265809303373190539}
-  timeDelay: 0
   switchObj: {fileID: 6265809304988516293}
   pointOn: {fileID: 6265809304349812791}
   pointOff: {fileID: 6265809303378331144}
@@ -1173,7 +1173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6265809304988516293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.32299995, y: -0.6596998, z: 0}
+  m_LocalPosition: {x: 0.32299995, y: -0.801, z: 0}
   m_LocalScale: {x: 0.10808001, y: 0.63164514, z: 1}
   m_Children: []
   m_Father: {fileID: 6265809304026217637}

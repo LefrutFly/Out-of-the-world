@@ -69,7 +69,7 @@ public class ButtonSwitch : Interacts<PlayerBehaviour>
     private void AnimationOff()
     {
         switchObj.transform.DOMove(pointOff.position, 0.5f, false);
-        switchObj.GetComponent<SpriteRenderer>().DOColor(new Color(200, 33, 0, 255), 0);
+        switchObj.GetComponent<SpriteRenderer>().DOColor(new Color32(200, 33, 0, 255), 0);
     }
 
     private void DrawLine()

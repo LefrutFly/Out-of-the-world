@@ -5216,6 +5216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 0}
+  generalSetup: {fileID: 11400000, guid: 3d13ef7f6ebd1104e96c2a5d40c1585e, type: 2}
 --- !u!1 &6025781396204375905
 GameObject:
   m_ObjectHideFlags: 0

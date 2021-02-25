@@ -26,7 +26,7 @@ public static class BuildExtentions
             BuildTarget.Android,
             BuildOptions.Development
             );
-        Debug.Log("DEV BUILD IS READY");
+        Debug.Log("DEV BUILD IS READY : V" + GetCurrentVerion());
     }
 
 #if UNITY_ANDROID
@@ -48,7 +48,7 @@ public static class BuildExtentions
             BuildOptions.None
             );
 
-        Debug.Log("RELEASE BUILD IS READY");
+        Debug.Log("RELEASE BUILD IS READY : V" + GetCurrentVerion());
     }
 
     public static void CommonSetupAndroid()

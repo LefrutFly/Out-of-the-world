@@ -5,7 +5,8 @@ public class Level : MonoBehaviour
     [SerializeField] private GeneralSetup generalSetup;
     [Space]
     [SerializeField] public int LevelInxdex;
-    [SerializeField] private bool drawLines
+
+    private bool drawLines
     {
         set
         {
@@ -27,5 +28,7 @@ public class Level : MonoBehaviour
     private void Awake()
     {
         drawLines = generalSetup.drawLines;
+        generalSetup.LastOpenLevel = LevelInxdex;
+        Saving.Save(generalSetup);
     }
 }

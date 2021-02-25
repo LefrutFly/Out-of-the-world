@@ -4,4 +4,7 @@ using UnityEngine;
 public class GeneralSetup : ScriptableObject
 {
     [SerializeField, Tooltip("включать ли подсказки в виде линий в игре")]public bool drawLines = true;
+    [Space]
+    [SerializeField] public int LastOpenLevel;
+    [SerializeField] public int LastUnlockedLevel;
 }

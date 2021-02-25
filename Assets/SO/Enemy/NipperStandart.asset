@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340541d0b3a12ce48a217caf241f2417, type: 3}
   m_Name: NipperStandart
   m_EditorClassIdentifier: 
-  moveSpeed: 4.1
+  moveSpeed: 6.6
   hpMax: 6
   damage: 1

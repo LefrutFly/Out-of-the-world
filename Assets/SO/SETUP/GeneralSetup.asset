@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7e50a9cf6aac34f9288102f85189e3, type: 3}
   m_Name: GeneralSetup
   m_EditorClassIdentifier: 
-  drawLines: 1
+  drawLines: 0
+  LastOpenLevel: 0
+  LastUnlockedLevel: 0
